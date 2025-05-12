@@ -1,0 +1,3 @@
+-- Initial configuration
+
+require("custom")
