@@ -1,5 +1,3 @@
--- debug.lua
---
 -- Shows how to use the DAP plugin to debug your code.
 --
 -- Primarily focused on configuring the debugger for Go, but can
@@ -18,11 +16,12 @@ return {
 		"nvim-neotest/nvim-nio",
 
 		-- Installs the debug adapters for you
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 
 		-- Add your own debuggers here
 		"leoluz/nvim-dap-go",
+		"mfussenegger/nvim-dap-python",
 	},
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
@@ -95,6 +94,7 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"delve",
+				"debugpy",
 			},
 		})
 
@@ -144,5 +144,9 @@ return {
 				detached = vim.fn.has("win32") == 0,
 			},
 		})
+
+		-- local venv = os.getenv("VIRTUAL_ENV")
+		-- local python_path = venv and venv .. "/bin/python" or "/usr/bin/python3"
+		require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
 	end,
 }

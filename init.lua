@@ -1,3 +1,1 @@
--- Initial configuration
-
 require("custom")

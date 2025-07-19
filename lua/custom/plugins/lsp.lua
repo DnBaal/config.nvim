@@ -1,4 +1,5 @@
 -- LSP Plugins
+
 return {
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -12,6 +13,7 @@ return {
 			},
 		},
 	},
+
 	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
@@ -65,6 +67,7 @@ return {
 					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
 					-- to define small helper and utility functions so you don't have to repeat yourself.
 					--
+					--
 					-- In this case, we create a function that lets us more easily define mappings specific
 					-- for LSP related items. It sets the mode, buffer and description for us each time.
 					local map = function(keys, func, desc, mode)
@@ -90,7 +93,7 @@ return {
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
-					map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.
@@ -219,10 +222,25 @@ return {
 			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client == nil then
+						return
+					end
+					if client.name == "ruff" then
+						-- Disable hover in favor of Pyright
+						client.server_capabilities.hoverProvider = false
+					end
+				end,
+				desc = "LSP: Disable hover capability from Ruff",
+			})
+
 			local servers = {
-				-- clangd = {},
-				-- gopls = {},
-				-- pyright = {},
+				clangd = {},
+				gopls = {},
+
 				pyright = {
 					capabilities = {
 						workspace = {
@@ -231,7 +249,21 @@ return {
 							},
 						},
 					},
+					settings = {
+						pyright = { disableOrganizeImports = true },
+
+						python = {
+							analysis = {
+								ignore = { "*" },
+							},
+						},
+					},
 				},
+				-- ruff = {
+				-- 	-- on_init = function(client)
+				-- 	-- 	client.server_capabilities.hoverProvider = false
+				-- 	-- end,
+				-- },
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -239,7 +271,7 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
+				ts_ls = {},
 				lua_ls = {
 					-- cmd = { ... },
 					-- filetypes = { ... },
@@ -271,11 +303,12 @@ return {
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
-				"black",
-				"isort",
+				"stylua",
 				"ruff",
+				"clang-format",
+				"prettierd",
 			})
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			---@type MasonLspconfigSettings

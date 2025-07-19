@@ -4,14 +4,12 @@
 -- but helps people determine if their system is setup correctly.
 --
 --]]
-
 local check_version = function()
 	local verstr = tostring(vim.version())
 	if not vim.version.ge then
 		vim.health.error(string.format("Neovim out of date: '%s'. Upgrade to latest stable or nightly", verstr))
 		return
 	end
-
 	if vim.version.ge(vim.version(), "0.10-dev") then
 		vim.health.ok(string.format("Neovim version is: '%s'", verstr))
 	else
