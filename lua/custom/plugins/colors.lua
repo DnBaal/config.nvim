@@ -81,4 +81,5 @@ return {
 		end,
 	},
 	{ "sainnhe/gruvbox-material", name = "gruvbox-material", priority = 1000, enabled = false },
+	{ "shaunsingh/nord.nvim", name = "nord", priority = 1000 },
 }

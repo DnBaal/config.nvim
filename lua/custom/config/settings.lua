@@ -52,7 +52,7 @@ vim.o.smartindent = true
 
 vim.o.termguicolors = true
 
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "85"
 vim.o.signcolumn = "yes"
 
 vim.o.wrap = true

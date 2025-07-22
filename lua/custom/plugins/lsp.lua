@@ -240,8 +240,7 @@ return {
 			local servers = {
 				clangd = {},
 				gopls = {},
-
-				pyright = {
+				basedpyright = {
 					capabilities = {
 						workspace = {
 							didChangeWatchedFiles = {
@@ -250,15 +249,42 @@ return {
 						},
 					},
 					settings = {
-						pyright = { disableOrganizeImports = true },
-
-						python = {
+						basedpyright = {
 							analysis = {
-								ignore = { "*" },
+								ignorePatterns = { "*.pyi" },
+								diagnosticSeverityOverrides = {
+									reportCallIssue = "warning",
+									reportUnreachable = "warning",
+									reportUnusedImport = "none",
+									reportUnusedCoroutine = "warning",
+								},
+								-- diagnosticMode = "workspace",
+								-- diagnosticMode = "openFilesOnly",
+								typeCheckingMode = "standard",
+								reportCallIssue = "none",
+								disableOrganizeImports = true,
 							},
 						},
 					},
 				},
+				-- pyright = {
+				-- 	capabilities = {
+				-- 		workspace = {
+				-- 			didChangeWatchedFiles = {
+				-- 				dynamicRegistration = true,
+				-- 			},
+				-- 		},
+				-- 	},
+				-- 	settings = {
+				-- 		pyright = { disableOrganizeImports = true },
+				--
+				-- 		python = {
+				-- 			analysis = {
+				-- 				ignore = { "*" },
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
 				-- ruff = {
 				-- 	-- on_init = function(client)
 				-- 	-- 	client.server_capabilities.hoverProvider = false
@@ -307,6 +333,7 @@ return {
 				"ruff",
 				"clang-format",
 				"prettierd",
+				"basedpyright",
 			})
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
