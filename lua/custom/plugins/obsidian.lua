@@ -24,7 +24,7 @@ return {
 		opts = {
 			workspaces = {
 				{
-					name = "personal",
+					name = "Vatican-Lib",
 					path = "~/vaults/Vatican-Lib/",
 				},
 			},
@@ -37,6 +37,7 @@ return {
 			picker = {
 				name = "telescope.nvim",
 			},
+			legacy_commands = false,
 
 			-- see below for full list of options 👇
 		},

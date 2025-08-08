@@ -1,11 +1,5 @@
 return {
 	{ "NMAC427/guess-indent.nvim" },
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
@@ -27,26 +21,22 @@ return {
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
-			local statusline = require("mini.statusline")
+			--1 local statusline = require("mini.statusline")
 			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
+			--1 statusline.setup({ use_icons = vim.g.have_nerd_font })
 
 			-- You can configure sections in the statusline by overriding their
 			-- default behavior. For example, here we set the section for
 			-- cursor location to LINE:COLUMN
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
+			--1 ---@diagnostic disable-next-line: duplicate-set-field
+			-- statusline.section_location = function()
+			-- 	return "%2l:%-2v"
+			--1 end
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
+			require("mini.pairs").setup()
 		end,
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {},
 	},
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -61,7 +51,6 @@ return {
 			},
 		},
 	},
-
 	-- search/replace in multiple files
 	{
 		"MagicDuck/grug-far.nvim",

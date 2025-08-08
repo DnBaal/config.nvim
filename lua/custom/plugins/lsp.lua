@@ -222,6 +222,7 @@ return {
 			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
 				callback = function(args)
@@ -297,8 +298,9 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				ts_ls = {},
+				-- ts_ls = {},
 				lua_ls = {
+
 					-- cmd = { ... },
 					-- filetypes = { ... },
 					-- capabilities = {},
@@ -335,7 +337,6 @@ return {
 				"prettierd",
 				"basedpyright",
 			})
-
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			---@type MasonLspconfigSettings

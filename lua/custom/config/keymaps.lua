@@ -39,10 +39,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Substitute without losing buffer word
-vim.keymap.set("x", "<leader>p", '"_dP')
+-- substitute without losing buffer word
+vim.keymap.set("x", "<leader>p", '"_dp')
 
--- analouge to multiple cursors
+-- analoge to multiple cursors
 vim.keymap.set("n", "<leader>,", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
