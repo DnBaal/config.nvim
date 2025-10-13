@@ -225,6 +225,7 @@ return {
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					if client == nil then
@@ -290,6 +291,7 @@ return {
 				-- 	-- on_init = function(client)
 				-- 	-- 	client.server_capabilities.hoverProvider = false
 				-- 	-- end,
+
 				-- },
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -330,6 +332,7 @@ return {
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
+
 			vim.list_extend(ensure_installed, {
 				"stylua",
 				"ruff",
