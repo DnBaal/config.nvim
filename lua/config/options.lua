@@ -4,3 +4,4 @@
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.cursorline = false
+vim.opt.list = false
