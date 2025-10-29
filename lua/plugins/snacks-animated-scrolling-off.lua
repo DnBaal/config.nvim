@@ -5,5 +5,6 @@ return {
       enabled = false, -- Disable scrolling animations
     },
     indent = { enabled = false },
+    explorer = { enabled = false },
   },
 }
