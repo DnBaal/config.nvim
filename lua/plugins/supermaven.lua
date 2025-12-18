@@ -1,9 +1,13 @@
 return {
   "supermaven-inc/supermaven-nvim",
-  opts = {
-    color = {
-      suggestion_color = "#5E5E76",
-      cterm = 244,
-    },
-  },
+  config = function()
+    require("supermaven-nvim").setup({
+      color = {
+        suggestion_color = "#6b6b6b",
+        cterm = 244,
+      },
+      disable_inline_completion = false,
+    })
+    print("Loading supermaven")
+  end,
 }

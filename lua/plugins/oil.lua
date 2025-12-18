@@ -11,7 +11,7 @@ return {
       end
 
       require("oil").setup({
-        columns = { "icon" },
+        columns = { "icon", "size", "mtime" },
         keymaps = {
           ["<C-h>"] = false,
           ["<C-l>"] = false,
