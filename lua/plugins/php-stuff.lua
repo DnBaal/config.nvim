@@ -1,17 +1,14 @@
 return {
   {
     "adalessa/laravel.nvim",
-    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "nvim-neotest/nvim-nio",
     },
+    ft = { "blade", "php" },
     cmd = { "Laravel", "Artisan" },
     event = { "VeryLazy" },
-    cond = function()
-      return vim.fn.filereadable("artisan") == 1
-    end,
     keys = {
       {
         "<localleader>ll",

@@ -1,5 +1,6 @@
 return {
   "metalelf0/black-metal-theme-neovim",
+  enabled = false,
   lazy = false,
   priority = 1000,
   config = function()
