@@ -1,5 +1,4 @@
 # config.nvim
 
-## I love neovim, it gives so much inspiration)
+## I love vim
 
-## Do not expect proper commit messages in this repo, everything is in my head.
